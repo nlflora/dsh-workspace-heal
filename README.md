@@ -50,7 +50,7 @@ dsh plugin --profile <profile> add /absolute/path/to/dsh-workspace-heal
 模型 → workspace_heal({ action: 'import', sessionId: 'session-…' })
 ```
 
-![工具输出示例（会话内容为占位）](docs/preview.png)
+![工具输出示例（会话内容为占位）](https://raw.githubusercontent.com/nlflora/dsh-workspace-heal/main/docs/preview.png)
 
 上图两段都是工具的原始返回：`status` 说明三个工作区的判定结果（`notes` 缺失且有会话 → 会重建；`scratch` 缺失但没有会话 → 永不重建），`preview` 就是交给用户确认的摘要正文。
 

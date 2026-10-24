@@ -36,5 +36,13 @@
     "session",
     "session-summary"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlflora/dsh-workspace-heal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nlflora/dsh-workspace-heal/issues"
+  },
+  "homepage": "https://github.com/nlflora/dsh-workspace-heal#readme",
   "license": "MIT"
 }
