@@ -17,14 +17,19 @@ DSH 按「会话头里的 `cwd`」把会话归属到工作区。文件夹被改�
 
 ## 安装
 
-```bash
-# 本地目录（开发）
-dsh plugin --profile <profile> add /absolute/path/to/dsh-workspace-heal
+从 npm 安装（推荐）：
 
-# 或者装进当前 profile 的 bundle 列表
+```bash
+dsh plugin --profile <你的 profile> add dsh-workspace-heal
 ```
 
-也可以在 DSH 的插件管理器里指向本目录安装。安装后无需重启即可激活（HMR）。
+改本地代码时，从目录安装（`link:` 方式，改动即时生效）：
+
+```bash
+dsh plugin --profile <你的 profile> add /absolute/path/to/dsh-workspace-heal
+```
+
+也可以在 DSH 的插件管理器里安装。装完无需重启即可激活（HMR）。
 
 ## 使用
 
