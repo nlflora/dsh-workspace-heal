@@ -25,7 +25,8 @@
     "bundle": { "patch": "./cordis.patch.yml" }
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18",
+    "dsh": ">=0.2.1-rc.1"
   },
   "keywords": [
     "dsh",

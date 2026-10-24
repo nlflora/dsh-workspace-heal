@@ -55,7 +55,7 @@ dsh plugin --profile <你的 profile> add /absolute/path/to/dsh-workspace-heal
 模型 → workspace_heal({ action: 'import', sessionId: 'session-…' })
 ```
 
-![工具输出示例（会话内容为占位）](https://raw.githubusercontent.com/nlflora/dsh-workspace-heal/main/docs/preview.png)
+![工具输出示例（会话内容为占位）](https://gcore.jsdelivr.net/gh/nlflora/dsh-workspace-heal@main/docs/preview.png)
 
 上图两段都是工具的原始返回：`status` 说明三个工作区的判定结果（`notes` 缺失且有会话 → 会重建；`scratch` 缺失但没有会话 → 永不重建），`preview` 就是交给用户确认的摘要正文。
 
@@ -66,10 +66,12 @@ dsh plugin --profile <你的 profile> add /absolute/path/to/dsh-workspace-heal
 ```yaml
 - id: workspace-heal
   config:
-    autoHeal: true          # 关掉就只保留工具
+    autoHeal: true          # 关掉就只保留工具（拿不准时先设 false）
     intervalSeconds: 60     # 检查间隔，最少 10 秒
     digestMaxChars: 1800    # 单个摘要的字符上限
 ```
+
+> ⚠️ **`autoHeal` 默认是 `true`**：插件每 60 秒检查一次，命中条件时会**真的往磁盘 `mkdir`**。三重条件很窄，但如果你希望"我没明确要求之前什么都别写"，先把 `autoHeal` 设成 `false`，需要时手动调 `workspace_heal({ action: 'heal' })`。
 
 ## 判定规则（重要）
 
@@ -92,6 +94,7 @@ dsh plugin --profile <你的 profile> add /absolute/path/to/dsh-workspace-heal
 - 摘要是**有损**的：用于接着干活，不是逐字恢复。
 - 摘要来自会话日志里的 `user/message` / `assistant/message` / `tool/call`；**运行时注入块会被剔除**（`<system-reminder>`、`[MNEMON]` 快照、`Current runtime context` 等），所以「最近的请求」里不会出现系统塞进去的上下文。
 - 读会话走 `sessionPersistence` 的只读句柄，取头尾各一段，不会把 13 MB 的日志整个读进内存。
+- **卸载插件不会删掉它建出来的目录。** 重建出来的目录属于你的文件系统，卸载后照旧存在；要清理请手动删。
 
 ## 测试
 
