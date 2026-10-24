@@ -1,0 +1,40 @@
+{
+  "name": "dsh-workspace-heal",
+  "version": "0.1.0",
+  "description": "Recreate deleted workspace folders that still own sessions, and import another session's context as a summary. Never rewrites session logs.",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "docs/*.png"
+  ],
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check index.js"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "workspace",
+    "session",
+    "session-summary"
+  ],
+  "license": "MIT"
+}

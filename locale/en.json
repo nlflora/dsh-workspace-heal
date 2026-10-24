@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Workspace Heal",
+    "description": "Recreates a deleted workspace folder that still owns sessions, and imports another session's context as a summary."
+  }
+}

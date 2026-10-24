@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+    background: #F3F4F6; padding: 28px; width: 1160px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .caption { font-size: 13px; color: #6B7280; margin: 0 0 12px 4px; }
+  .caption b { color: #111827; font-weight: 600; }
+
+  .card {
+    background: #fff; border: 1px solid #E5E7EB; border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(16,24,40,.06); margin-bottom: 18px; overflow: hidden;
+  }
+  .head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 11px 16px; border-bottom: 1px solid #F1F2F4; background: #FCFCFD;
+  }
+  .tool { font-family: Consolas, "Cascadia Mono", monospace; font-size: 13px; font-weight: 600; color: #111827; }
+  .arg {
+    font-family: Consolas, "Cascadia Mono", monospace; font-size: 12px; color: #4B5563;
+    background: #F3F4F6; border: 1px solid #E5E7EB; border-radius: 6px; padding: 1px 7px;
+  }
+  .ok { margin-left: auto; font-size: 11.5px; color: #067647; background: #ECFDF3; border: 1px solid #ABEFC6; border-radius: 999px; padding: 2px 9px; }
+  .body { padding: 14px 16px 16px; }
+  pre {
+    font-family: Consolas, "Cascadia Mono", monospace; font-size: 12.5px; line-height: 1.72;
+    color: #1F2937; white-space: pre-wrap; word-break: break-word;
+  }
+  .k { color: #1D4ED8; }
+  .s { color: #047857; }
+  .n { color: #B45309; }
+  .c { color: #9CA3AF; }
+  .h { color: #111827; font-weight: 600; }
+  .note { font-size: 11.5px; color: #9CA3AF; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+  <div class="caption"><b>workspace_heal</b> · 工具输出示例（会话内容为占位，非真实数据）</div>
+
+  <div class="card">
+    <div class="head">
+      <span class="tool">workspace_heal</span>
+      <span class="arg">action: "status"</span>
+      <span class="ok">✓ completed</span>
+    </div>
+    <div class="body">
+<pre>{
+  <span class="k">"ok"</span>: <span class="n">true</span>,
+  <span class="k">"autoHeal"</span>: <span class="n">true</span>,
+  <span class="k">"intervalSeconds"</span>: <span class="n">60</span>,
+  <span class="k">"workspaces"</span>: [
+    { <span class="k">"title"</span>: <span class="s">"demo-project"</span>,  <span class="k">"path"</span>: <span class="s">"D:\\projects\\demo"</span>,   <span class="k">"status"</span>: <span class="s">"ok"</span>,          <span class="k">"bindable"</span>: <span class="n">true</span>, <span class="k">"willHeal"</span>: <span class="n">false</span> },
+    { <span class="k">"title"</span>: <span class="s">"notes"</span>,         <span class="k">"path"</span>: <span class="s">"D:\\projects\\notes"</span>,  <span class="k">"status"</span>: <span class="s">"missing-dir"</span>, <span class="k">"bindable"</span>: <span class="n">true</span>, <span class="k">"willHeal"</span>: <span class="n">true</span>  },
+    { <span class="k">"title"</span>: <span class="s">"scratch"</span>,       <span class="k">"path"</span>: <span class="s">"D:\\temp\\scratch"</span>,    <span class="k">"status"</span>: <span class="s">"missing-dir"</span>, <span class="k">"bindable"</span>: <span class="n">false</span>, <span class="k">"willHeal"</span>: <span class="n">false</span> }
+  ],
+  <span class="k">"workspaceCount"</span>: <span class="n">3</span>,
+  <span class="k">"orphanCount"</span>: <span class="n">1</span>
+}</pre>
+      <div class="note">notes：缺失且绑定了会话 → 会被重建　·　scratch：缺失但没有会话 → 永不重建</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <span class="tool">workspace_heal</span>
+      <span class="arg">action: "preview", sessionId: "session-…"</span>
+      <span class="ok">✓ completed</span>
+    </div>
+    <div class="body">
+<pre><span class="h">## 旧会话上下文（摘要导入）</span>
+<span class="c">-</span> 原工作区：<span class="s">D:\\projects\\notes</span>
+<span class="c">-</span> 创建时间：<span class="n">2026/10/18 09:12:03</span>
+<span class="c">-</span> 规模：<span class="n">12</span> 轮 / <span class="n">9</span> 条用户消息 / <span class="n">9</span> 条回复 / <span class="n">3</span> 种工具
+<span class="c">-</span> 最初目标：把 markdown 笔记按主题拆成独立文件，并加一个索引页
+<span class="c">-</span> 最近的请求：
+  <span class="c">-</span> 索引页里链接改成相对路径
+  <span class="c">-</span> 帮我检查有没有断链
+<span class="c">-</span> 最近的结论：
+  <span class="c">-</span> 已拆成 14 个文件，index.md 用相对路径链接，断链检查通过
+<span class="c">-</span> 用过的工具：<span class="s">read×18, edit×12, glob×4</span>
+
+<span class="c">&gt; 以上是从旧会话自动提取的摘要，不是逐字记录；旧会话本身未被修改。</span></pre>
+    </div>
+  </div>
+
+</body>
+</html>

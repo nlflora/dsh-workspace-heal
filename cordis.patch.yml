@@ -1,0 +1,7 @@
+- insert:
+    - id: workspace-heal
+      name: dsh-workspace-heal
+      config:
+        autoHeal: true
+        intervalSeconds: 60
+        digestMaxChars: 1800
